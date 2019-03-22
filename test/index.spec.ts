@@ -11,6 +11,7 @@ describe('index', () => {
 		load('../src/index', {
 			'./recipeStore': mocks.recipeStore,
 			'commander': mocks.commander,
+			'console': mocks.console,
 			'process': mocks.process
 		});
 	}
@@ -23,6 +24,9 @@ describe('index', () => {
 				help: stub().returnsThis(),
 				parse: stub().returnsThis(),
 				version: stub().returnsThis()
+			},
+			console: {
+				error: stub()
 			},
 			process: {
 				argv: ['node', 'index.js']
@@ -47,6 +51,17 @@ describe('index', () => {
 				.returnsThis();
 			loadIndex();
 			expect(mocks.recipeStore.save).to.have.been.calledWith(urls);
+		});
+		it('logs an error if the recipe store fails', () => {
+			const urls = ['test-url-1', 'test-url-2', 'test-url-3'];
+			mocks.process.argv = ['node', 'index.js', 'save', ...urls];
+			const error = new Error('Messed up!');
+			mocks.recipeStore.save = stub().throws(error);
+			mocks.commander.action = stub()
+				.callsArgWith(0, urls[0], urls.slice(1))
+				.returnsThis();
+			loadIndex();
+			expect(mocks.console.error).to.have.been.calledWith(error);
 		});
 	});
 });
