@@ -13,11 +13,10 @@ if (argv.length < 3) {
 	program.help();
 }
 
-async function saveUrls(url, otherUrls) {
-	var urls = [url];
+async function saveUrls(url: string, otherUrls: string[]) {
+	let urls = [url];
 	if (otherUrls) {
 		urls = urls.concat(otherUrls);
 	}
 	await save(urls);
-	console.log(`Saved ${urls.toString()}`)
 }
