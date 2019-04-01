@@ -4,7 +4,9 @@
   "description": "Tool for storing recipes",
   "main": "lib/src/index",
   "scripts": {
-    "test": "ts-mocha -p ./tsconfig.json test/**/*.spec.ts"
+    "test": "ts-mocha -p ./tsconfig.json test/**/*.spec.ts",
+    "cover": "nyc --reporter=text --reporter=html npm test",
+    "coveralls": "npm run cover && npm report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
@@ -20,6 +22,7 @@
     "commander": "^2.19.0"
   },
   "devDependencies": {
+    "@istanbuljs/nyc-config-typescript": "^0.1.0",
     "@types/chai": "^4.1.7",
     "@types/commander": "^2.12.2",
     "@types/faker": "^4.1.5",
@@ -29,13 +32,19 @@
     "@types/sinon": "^7.0.10",
     "@types/sinon-chai": "^3.2.2",
     "chai": "^4.2.0",
+    "coveralls": "^3.0.3",
     "faker": "^4.1.0",
     "mocha": "^6.0.2",
+    "nyc": "^13.3.0",
     "proxyquire": "^2.1.0",
     "sinon": "^7.3.0",
     "sinon-chai": "^3.3.0",
     "ts-mocha": "^6.0.0",
     "tslint": "^5.14.0",
     "typescript": "^3.3.4000"
+  },
+  "nyc": {
+    "extends": "@istanbuljs/nyc-config-typescript",
+    "all": true
   }
 }

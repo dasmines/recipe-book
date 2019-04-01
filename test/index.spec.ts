@@ -2,7 +2,7 @@ import { expect, use } from 'chai';
 import * as sinonChai from 'sinon-chai';
 use(sinonChai);
 import { load, noCallThru } from 'proxyquire';
-import { match, stub } from 'sinon';
+import { stub } from 'sinon';
 noCallThru();
 
 describe('index', () => {
@@ -37,9 +37,14 @@ describe('index', () => {
 		};
 	});
 	describe('when running without a command', () => {
-		it('loads CLI help', () => {
+		it('loads CLI help if a command is not provided', () => {
 			loadIndex();
 			expect(mocks.commander.help).to.have.been.calledWith();
+
+			mocks.process.argv = ['node', 'index.js', 'blah', 'blah'];
+			mocks.commander.help.resetHistory();
+			loadIndex();
+			expect(mocks.commander.help).to.have.callCount(0);
 		});
 	});
 	describe('when running the save command', () => {
