@@ -43,5 +43,11 @@ describe('recipeStore', () => {
 			await recipeStore.save([savedUrl]);
 			expect(mocks.fs.appendFile).to.have.callCount(0);
 		});
+		it('logs errors saving the recipe', async () => {
+			const error = new Error('Messed up!');
+			mocks.fs.appendFile.throws(error);
+			await recipeStore.save(['something']);
+			expect(mocks.console.error).to.have.been.calledWith(error);
+		});
 	});
 });

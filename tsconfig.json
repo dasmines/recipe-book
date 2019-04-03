@@ -1,13 +1,14 @@
 {
-	"compileOnSave": true,
-	"compilerOptions": {
-		"alwaysStrict": true,
-		"module": "commonjs",
-		"moduleResolution": "node",
-		"pretty": true,
-		"target": "esnext",
-		"outDir": "lib",
-		"sourceMap": true,
-		"noImplicitAny": true
-	}
+  "compileOnSave": true,
+  "compilerOptions": {
+    "alwaysStrict": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "pretty": true,
+    "target": "esnext",
+    "outDir": "lib",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "incremental": true
+  }
 }
