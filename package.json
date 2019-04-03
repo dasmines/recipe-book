@@ -4,7 +4,7 @@
   "description": "Tool for storing recipes",
   "main": "lib/src/index",
   "scripts": {
-    "test": "mocha --require ts-node/register --require source-map-support/register --full-trace --bail test/**/*.spec.ts",
+    "test": "_mocha --require ts-node/register --require source-map-support/register --full-trace --bail test/**/*.spec.ts",
     "cover": "nyc --reporter=text --reporter=html npm test",
     "coveralls": "npm run cover && npm report --reporter=text-lcov | coveralls"
   },
