@@ -4,13 +4,13 @@
   "description": "Tool for storing recipes",
   "main": "lib/src/index",
   "scripts": {
-    "test": "_mocha --require ts-node/register --require source-map-support/register --full-trace --bail test/**/*.spec.ts",
+    "test": "mocha --require ts-node/register --require source-map-support/register --full-trace --bail test/**/*.spec.ts",
     "cover": "nyc --reporter=text --reporter=html npm test",
-    "coveralls": "npm run cover && npm report --reporter=text-lcov | coveralls"
+    "coveralls": "npm run cover && nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dasmines/recipe-book.git"
+    "url": "https://github.com/dasmines/recipe-book.git"
   },
   "author": "",
   "license": "ISC",
